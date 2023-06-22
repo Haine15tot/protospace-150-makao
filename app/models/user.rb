@@ -8,5 +8,4 @@ class User < ApplicationRecord
   validates :profile, presence: true
   validates :affiliation, presence: true
   validates :position, presence: true
-  has_many :prototypes, class_name: 'Prototype'
 end
