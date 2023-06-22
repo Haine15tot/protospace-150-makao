@@ -16,14 +16,22 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def edit
+  def show
     @prototype = Prototype.find(params[:id])
   end
 
+  def edit
+     @prototype = Prototype.find(params[:id])
+  end
+  
+
   def update
-    prototype = prototype.find(params[:id])
-    prototype.update(prototype_params)
-    redirect_to root_path
+    @prototype = Prototype.find(params[:id])
+    if @prototype.update(prototype_params)
+      redirect_to root_path, notice: '更新されました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
