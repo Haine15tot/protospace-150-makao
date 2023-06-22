@@ -23,11 +23,11 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def edit
-    unless @prototype.user == current_user
-      redirect_to root_path
-    end
-  end
+  # def edit
+  #   unless @prototype.user == current_user
+  #     redirect_to root_path
+  #   end
+  # end
 
   # def update
   #   if @prototype.update(prototype_params)
@@ -37,14 +37,14 @@ class PrototypesController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  #   if @prototype.user == current_user
-  #     @prototype.destroy
-  #     redirect_to root_path, notice: '投稿が削除されました'
-  #   else
-  #     redirect_to root_path, notice: '投稿の削除に失敗しました'
-  #   end
-  # end
+  def destroy
+    if @prototype.user == current_user
+      @prototype.destroy
+      redirect_to root_path, notice: '投稿が削除されました'
+    else
+      redirect_to root_path, notice: '投稿の削除に失敗しました'
+    end
+  end
 
   private
 
