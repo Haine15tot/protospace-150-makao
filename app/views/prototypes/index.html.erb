@@ -4,12 +4,13 @@
 <%# ログインしているときは以下を表示する %>
 <% if user_signed_in? %>
   <div class="greeting">
-    こんにちは、 
+    こんにちは、
     <%= link_to "#{ current_user.name }さん" ,root_path,class: :greeting__link %>
   </div>
 <% end %>
     <div class="card__wrapper">
       <%# 投稿機能実装後、部分テンプレートでプロトタイプ投稿一覧を表示する %>
+      <%= render "prototype"%>
     </div>
   </div>
 </main>
