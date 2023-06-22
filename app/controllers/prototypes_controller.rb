@@ -23,19 +23,19 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def edit
-    unless @prototype.user == current_user
-      redirect_to root_path
-    end
-  end
+  # def edit
+  #   unless @prototype.user == current_user
+  #     redirect_to root_path
+  #   end
+  # end
 
-  def update
-    if @prototype.update(prototype_params)
-      redirect_to prototype_path(@prototype), notice: '投稿が更新されました'
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @prototype.update(prototype_params)
+  #     redirect_to prototype_path(@prototype), notice: '投稿が更新されました'
+  #   else
+  #     render :edit, status: :unprocessable_entity
+  #   end
+  # end
 
   def destroy
     if @prototype.user == current_user
