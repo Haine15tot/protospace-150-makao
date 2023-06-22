@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :prototypes
   devise_scope :user do
       get '/users/sign_out' => 'devise/sessions#destroy'
+      get '/users/:id', to: 'users#show', as: 'user'
   end
 end
