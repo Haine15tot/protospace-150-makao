@@ -6,14 +6,14 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to prototype_path(@prototype), notice: 'コメントが追加されました'
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = 'コメントの投稿に失敗しました'
+      redirect_to prototype_path(@prototype)
     end
   end
-
+  
   private
 
   def comment_params
     params.require(:comment).permit(:text)
   end
-  
 end
