@@ -7,12 +7,14 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    # @comments = @prototype.comments
+    @comments = @prototype.comments
+    @comment = Comment.new
   end
 
   def new
     @prototypes = Prototype.new
   end
+
   def create
     @prototypes = Prototype.new(prototype_params)
     if @prototypes.save
