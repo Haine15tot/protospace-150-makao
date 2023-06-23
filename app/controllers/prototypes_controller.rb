@@ -7,12 +7,14 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    # @comments = @prototype.comments
+    @comments = @prototype.comments
+    @comment = Comment.new
   end
 
   def new
     @prototypes = Prototype.new
   end
+
   def create
     @prototypes = Prototype.new(prototype_params)
     if @prototypes.save
@@ -40,12 +42,12 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def create
-    @prototypes = Prototype.new(prototype_params)
-    if @prototypes.save
-      redirect_to root_path, notice: '投稿されました'
+  def destroy
+    if @prototype.user == current_user
+      @prototype.destroy
+      redirect_to root_path, notice: '投稿が削除されました'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, alert: '削除権限がありません'
     end
   end
 
