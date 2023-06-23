@@ -1,12 +1,15 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_prototype, only: [:show, :edit, :update, :destroy]
+
   def index
     @prototypes = Prototype.all
   end
+
   def show
     # @comments = @prototype.comments
   end
+
   def new
     @prototypes = Prototype.new
   end
@@ -18,6 +21,7 @@ class PrototypesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   def edit
     unless @prototypes.user == current_user
       redirect_to root_path
@@ -30,6 +34,7 @@ class PrototypesController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
   def destroy
     if @prototypes.user == current_user
       @prototypes.destroy
@@ -38,10 +43,12 @@ class PrototypesController < ApplicationController
       redirect_to root_path, notice: '投稿の削除に失敗しました'
     end
   end
+
   private
   def set_prototype
     @prototypes = Prototype.find(params[:id])
   end
+
   def prototype_params
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
   end

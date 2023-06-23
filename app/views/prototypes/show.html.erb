@@ -4,8 +4,10 @@
       <p class="prototype__hedding">
         <%= @prototypes.title %>
       </p>
+
       <%= link_to "by #{@prototypes.user.name}", root_path, class: :prototype__user %>
       <% if user_signed_in? && current_user == @prototypes.user %>
+
         <div class="prototype__manage">
           <%= link_to "編集する", edit_prototype_path(@prototypes), class: :prototype__btn %>
           <%= link_to "削除する", prototype_path(@prototypes), data: { turbo_method: :delete }, class: :prototype__btn %>
@@ -18,7 +20,11 @@
         <div class="prototype__detail">
           <p class="detail__title">キャッチコピー</p>
           <p class="detail__message">
+
             <%= @prototypes.catch_copy %>
+
+
+
         </div>
         <div class="prototype__detail">
           <p class="detail__title">コンセプト</p>
@@ -52,4 +58,4 @@
       </div>
     </div>
   </div>
-</main>
+
