@@ -12,12 +12,12 @@ class PrototypesController < ApplicationController
   end
 
   def new
-    @prototypes = Prototype.new
+    @prototype = Prototype.new
   end
 
   def create
-    @prototypes = Prototype.new(prototype_params)
-    if @prototypes.save
+    @prototype = Prototype.new(prototype_params)
+    if @prototype.save
       redirect_to root_path, notice: '投稿されました'
     else
       render :new, status: :unprocessable_entity
