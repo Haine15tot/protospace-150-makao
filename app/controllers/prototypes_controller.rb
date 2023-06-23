@@ -11,12 +11,12 @@ class PrototypesController < ApplicationController
   end
 
   def new
-    @prototype = Prototype.new
+    @prototypes = Prototype.new
   end
 
   def create
-    @prototype = Prototype.new(prototype_params)
-    if @prototype.save
+    @prototypes = Prototype.new(prototype_params)
+    if @prototypes.save
       redirect_to root_path, notice: '投稿されました'
     else
       render :new, status: :unprocessable_entity
@@ -38,8 +38,8 @@ class PrototypesController < ApplicationController
   # end
 
   def destroy
-    if @prototype.user == current_user
-      @prototype.destroy
+    if @prototypes.user == current_user
+      @prototypes.destroy
       redirect_to root_path, notice: '投稿が削除されました'
     else
       redirect_to root_path, notice: '投稿の削除に失敗しました'
@@ -49,7 +49,7 @@ class PrototypesController < ApplicationController
   private
 
   def set_prototype
-    @prototype = Prototype.find(params[:id])
+    @prototypes = Prototype.find(params[:id])
   end
 
   def prototype_params
