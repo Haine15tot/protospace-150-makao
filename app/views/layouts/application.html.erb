@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
   </head>
+
   <body>
     <header class="header">
       <div class="inner">
@@ -16,22 +18,19 @@
           <div class="nav__left">
             <%= link_to image_tag("logo.png", class: :logo), root_path %>
           </div>
-
 <% if user_signed_in? %>
   <div class="nav__right">
-            <ul class="user__info">
-              <li>
-                <%= link_to "詳細ページ", "/users/#{current_user.id}" %>
-                <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-              </li>
-            </ul>
-          </span>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: :nav__logout %>
+    <%= link_to "New Proto", new_prototype_path, class: :nav__btn %>
+  </div>
 <% else %>
   <div class="nav__right">
     <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
     <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
   </div>
 <% end %>
+
+
             </div>
           <%# // ログインしていないときは上記を表示するようにしましょう %>
         </div>
